@@ -1,0 +1,36 @@
+SERVICIO TÉCNICO - SITIO SEGURO + APP INSTALABLE
+================================================
+
+CÓDIGO DE INSTALACIÓN (guardalo, lo pide una sola vez): B7600DDA6F
+
+PASO A PASO
+1. Subí TODO el contenido de esta carpeta a tu hosting (public_html o una subcarpeta). Tiene que tener PHP.
+2. ANTES de subir: activá el certificado SSL gratis en el panel del hosting ("SSL/TLS", "Let's Encrypt" o "AutoSSL") y comprobá que https://tudominio.com abre.
+   El sitio ya viene configurado para forzar HTTPS: quien entre por http:// pasa solo a https://. Además el servidor se niega a recibir la contraseña por una conexión sin cifrar.
+   (Si tu hosting usa nginx y no Apache, el .htaccess no se aplica: pedile a soporte que active "redirigir a HTTPS" o usá la opción de HTTPS del panel.)
+3. Abrí en el navegador: https://tudominio.com/instalar.php
+   Poné el código de instalación de arriba y creá TU contraseña (mínimo 8 caracteres, mejor larga).
+   El instalador se borra solo. Si no se borró, borralo vos del servidor.
+4. Entrá a la web, bajá hasta el final y tocá "Acceso administrador".
+5. Desde Chrome en el celular: menú (⋮) > "Instalar app".
+
+QUÉ ES PRIVADO Y QUÉ ES PÚBLICO
+- Público (lo ve cualquiera al inspeccionar la web): el catálogo con los precios que mostrás a tus clientes, tu WhatsApp y los textos de garantía. Eso tiene que llegar al navegador del cliente: no se puede ocultar.
+- Privado (nunca llega al navegador de un visitante): tu contraseña (guardada cifrada con bcrypt), el código del panel de administración, la lista de marcas y modelos, y las copias de seguridad. Está en la carpeta "private", bloqueada desde afuera.
+- MEJOR TODAVÍA: si tu hosting te deja, mové la carpeta "private" fuera de public_html (al mismo nivel) y cambiá la línea 'const PRIV' al principio de api.php.
+
+GUARDADO Y COPIAS
+- Todo lo que crees o edites en el panel se guarda solo, en unos segundos (arriba del panel dice "Guardado ✔").
+- Se hace una copia automática cada vez que guardás (como máximo una cada 5 minutos, últimas 100) y una por día (90 días). En la pestaña "💾 Copias" las ves y restaurás con un toque.
+- "Descargar copia completa" baja un .zip con los datos y todas las fotos. Hacelo seguido y guardalo en otro lugar (Drive, tu compu). Si el hosting se cae, es tu respaldo.
+
+SEGURIDAD INCLUIDA
+- Contraseña con bcrypt y sesión con cookie segura (HttpOnly, SameSite, Secure con HTTPS).
+- Bloqueo por 15 minutos después de 5 intentos fallidos de contraseña.
+- Protección CSRF: nadie puede hacerte guardar cambios desde otra página.
+- El servidor revisa y limpia todo lo que se guarda (solo campos conocidos) y vuelve a generar las fotos.
+- HTTPS obligatorio (redirección automática + HSTS) y el servidor rechaza el login y la instalación si no hay HTTPS.
+- Cabeceras de seguridad (CSP, anti-iframe, nosniff) y carpeta de fotos sin ejecución de código.
+
+LOGO DE LA APP
+- Reemplazá icon-192.png, icon-512.png, icon-maskable-512.png (con margen), apple-touch-icon.png (180x180) y favicon.png por los tuyos (mismo nombre y tamaño). Desinstalá y volvé a instalar la app para ver el cambio.
